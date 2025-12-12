@@ -7,6 +7,20 @@
     <title>BuySmartlyNow - Compare, Save, Earn</title>
     <meta name="description" content="Compare prices, find best deals, and earn rewards with our partner program.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0055aa', // Professional Blue
+                        secondary: '#28a745', // Trust Green
+                        accent: '#f4f7f6', // Light Gray-White
+                        dark: '#333333'
+                    }
+                }
+            }
+        };
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -82,6 +96,20 @@
                     <p class="text-xl text-gray-600 mb-8">
                         The smartest way to shop online. Find the best deals across Amazon, Jumia, and more in seconds.
                     </p>
+
+                    <!-- Search Bar -->
+                    <div class="max-w-xl mx-auto mb-10 relative group">
+                        <input type="text" id="hero-search" placeholder="Search for products (e.g. iPhone 15)..."
+                            class="w-full px-6 py-4 rounded-full border border-gray-200 shadow-sm focus:ring-2 focus:ring-primary outline-none transition group-hover:shadow-md"
+                            onkeypress="handleSearch(event)">
+                        <button onclick="handleSearch(event)"
+                            class="absolute right-2 top-2 bg-primary text-white p-2.5 rounded-full hover:bg-blue-700 transition shadow-md">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <button onclick="showSection('deals')"
                             class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition text-lg shadow-xl shadow-blue-500/20">
@@ -119,6 +147,18 @@
                         <span class="text-3xl mb-2 block">🚚</span>
                         <h3 class="font-medium">Delivery</h3>
                     </div>
+                </div>
+            </div>
+
+            <!-- Featured Mock Products -->
+            <div class="container mx-auto px-4 pb-16">
+                <div class="flex justify-between items-end mb-8">
+                    <h2 class="text-2xl font-bold">Featured Deals</h2>
+                    <a href="#deals" onclick="showSection('deals')"
+                        class="text-primary font-medium hover:underline">View All &rarr;</a>
+                </div>
+                <div id="featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Injected via JS -->
                 </div>
             </div>
         </section>
