@@ -86,6 +86,62 @@ const products = [
             { name: "Amazon", price: "$679", url: "/go/amazon/canon", color: "bg-gray-800 text-white" },
             { name: "Konga", price: "₦850,000", url: "/go/konga/canon", color: "bg-pink-600 text-white" }
         ]
+    },
+    {
+        id: 4,
+        name: "Flights to London (Round Trip)",
+        category: "Travel",
+        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=600",
+        description: "Best rates for summer 2025. Direct flights from Lagos.",
+        retailers: [
+            { name: "TravelStart", price: "N1,150,000", url: "https://www.travelstart.com.ng", color: "bg-purple-600 text-white" },
+            { name: "Wakanow", price: "N1,200,000", url: "https://www.wakanow.com", color: "bg-blue-600 text-white" }
+        ]
+    },
+    {
+        id: 5,
+        name: "Dubai Holiday Package (5 Nights)",
+        category: "Travel",
+        image: "https://images.unsplash.com/photo-1512453979798-5ea932a23518?auto=format&fit=crop&q=80&w=600",
+        description: "All-inclusive stay at Atlantis The Palm + Visa.",
+        retailers: [
+            { name: "Wakanow", price: "N2,500,000", url: "#", color: "bg-blue-600 text-white" },
+            { name: "TravelStart", price: "N2,650,000", url: "#", color: "bg-purple-600 text-white" }
+        ]
+    },
+    {
+        id: 6,
+        name: "Sony WH-1000XM5",
+        category: "Gadgets",
+        image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=600",
+        description: "Industry-leading noise canceling with 30-hour battery life.",
+        retailers: [
+            { name: "Amazon", price: "$348", url: "#", color: "bg-gray-900 text-white" },
+            { name: "Jumia", price: "N450,000", url: "#", color: "bg-orange-500 text-white" },
+            { name: "Slot", price: "N480,000", url: "#", color: "bg-red-600 text-white" }
+        ]
+    },
+    {
+        id: 7,
+        name: "MacBook Pro M3",
+        category: "Gadgets",
+        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca4?auto=format&fit=crop&q=80&w=600",
+        description: "Must-have for power users.",
+        retailers: [
+            { name: "Amazon", price: "$1,599", url: "#", color: "bg-gray-900 text-white" },
+            { name: "Slot", price: "N2,800,000", url: "#", color: "bg-red-600 text-white" }
+        ]
+    },
+    {
+        id: 8,
+        name: "Samsung S24 Ultra",
+        category: "Gadgets",
+        image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600",
+        description: "Zoom into the future.",
+        retailers: [
+            { name: "Jumia", price: "N1,900,000", url: "#", color: "bg-orange-500 text-white" },
+            { name: "Slot", price: "N2,100,000", url: "#", color: "bg-red-600 text-white" }
+        ]
     }
 ];
 
@@ -105,7 +161,8 @@ function renderProducts(filter = null, type = 'category') {
             const query = filter.toLowerCase();
             filtered = products.filter(p =>
                 p.name.toLowerCase().includes(query) ||
-                p.description.toLowerCase().includes(query)
+                p.description.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query)
             );
             if (dealsTitle) dealsTitle.innerText = `Search Results for "${filter}"`;
         }
@@ -127,11 +184,11 @@ function renderProducts(filter = null, type = 'category') {
         }
     }
 
-    // Render Featured Grid (Home Page - Top 4)
+    // Render Featured Grid (Home Page - Top 8)
     if (featuredGrid && !filter) {
         featuredGrid.innerHTML = '';
-        // Show 4 items for the new grid layout
-        products.slice(0, 4).forEach(product => featuredGrid.appendChild(createProductCard(product)));
+        // Show 8 items for the new expanded grid layout
+        products.slice(0, 8).forEach(product => featuredGrid.appendChild(createProductCard(product)));
     }
 }
 
@@ -149,7 +206,8 @@ function handleSearch(e) {
 
 function createProductCard(product) {
     const card = document.createElement('div');
-    card.className = "group bg-transparent"; // Removed default card styling to match clean look
+    // Minimal Card Style: White bg, subtle shadow, rounded corners
+    card.className = "group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full";
 
     // 1. Sort Retailers by Price
     const sortedRetailers = [...product.retailers].sort((a, b) => {
@@ -158,51 +216,45 @@ function createProductCard(product) {
         return priceA - priceB;
     });
 
-    const bestPrice = sortedRetailers[0].price;
-    const oldPrice = sortedRetailers[0].price.replace(/[^0-9]/g, '') * 1.2; // Mock old price
-
-    // Retailer Logic (Hidden by default, shown on click/hover detail - Simplified for 'DNK' look to just show 'Shop' button or best price)
-    // For this design, we'll keep it simple: Image -> Title -> Stars -> Price
+    let retailersHtml = '';
+    sortedRetailers.forEach((retailer, index) => {
+        const isBestPrice = index === 0;
+        // Material U Style Button: Full width, pill shape, bold color
+        retailersHtml += `
+            <a href="${retailer.url}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event)" 
+               class="flex justify-between items-center w-full px-6 py-3 rounded-xl text-sm font-bold mb-3 transition transform hover:scale-[1.02] active:scale-95 shadow-sm hover:shadow-md ${retailer.color} ${isBestPrice ? 'ring-2 ring-offset-2 ring-blue-500' : ''}">
+                <div class="flex flex-col items-start leading-tight">
+                    <span class="opacity-90">Buy on</span>
+                    <span class="text-lg">${retailer.name}</span>
+                </div>
+                <div class="flex flex-col items-end text-right">
+                    ${isBestPrice ? '<span class="bg-white/20 text-white text-[10px] px-2 py-0.5 rounded-full mb-1 uppercase tracking-wider">Best Deal</span>' : ''}
+                    <span class="text-lg font-extrabold">${retailer.price}</span>
+                </div>
+            </a>
+        `;
+    });
 
     card.innerHTML = `
-        <div class="relative overflow-hidden mb-4">
-             <img src="${product.image}" alt="${product.name}" class="w-full h-[300px] object-cover transition duration-500 group-hover:scale-105">
-
-             <!-- Sale Badge -->
-             <div class="absolute top-4 left-4 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md badge-sale">
-                <span class="text-xs font-bold text-gray-900">Sale!</span>
-             </div>
-
-             <!-- Hover Actions -->
-             <div class="absolute top-4 right-4 flex flex-col gap-2 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition duration-300">
-                <button class="bg-white p-2 rounded-full shadow-md hover:bg-black hover:text-white transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></button>
-             </div>
+        <div class="relative overflow-hidden h-64 bg-gray-50">
+             <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+             <!-- Category Pill -->
+             <span class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                ${product.category}
+             </span>
         </div>
 
-        <div>
-            <h3 class="text-lg font-bold text-gray-900 mb-1 leading-tight">${product.name}</h3>
-            <p class="text-sm text-gray-400 mb-2">${product.category}</p>
-
-            <!-- Price Block -->
-            <div class="flex items-center gap-3 mb-2">
-                <span class="text-gray-400 line-through text-sm">Now</span>
-                <span class="text-gray-900 font-bold text-lg">${bestPrice}</span>
+        <div class="p-6 flex flex-col flex-grow">
+            <!-- Minimal Title -->
+            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-blue-600 transition">${product.name}</h3>
+            <p class="text-sm text-gray-500 mb-6 flex-grow leading-relaxed">${product.description}</p>
+            
+            <div class="mt-auto border-t border-gray-100 pt-4">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Compare Prices</p>
+                <div class="flex flex-col">
+                    ${retailersHtml}
+                </div>
             </div>
-
-            <!-- Stars -->
-            <div class="flex text-yellow-500 text-sm mb-3 star-rating">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span class="text-gray-300">★</span>
-            </div>
-
-            <!-- Swatches (Mock) -->
-            <div class="flex gap-2 mb-4">
-                <div class="w-4 h-4 rounded-full bg-blue-500 border border-gray-200 cursor-pointer hover:scale-110 transition"></div>
-                <div class="w-4 h-4 rounded-full bg-green-500 border border-gray-200 cursor-pointer hover:scale-110 transition"></div>
-                <div class="w-4 h-4 rounded-full bg-red-500 border border-gray-200 cursor-pointer hover:scale-110 transition"></div>
-            </div>
-
-             <!-- Retailer Link Button -->
-             <a href="${sortedRetailers[0].url}" onclick="trackClick(event)" class="inline-block border border-gray-900 text-gray-900 px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition">Check Deal</a>
         </div>
     `;
     return card;
@@ -306,13 +358,11 @@ function checkAuthState() {
 
     if (userStr) {
         const user = JSON.parse(userStr);
-        if (navBtn) navBtn.innerText = "My Dashboard";
-        if (mobileBtn) mobileBtn.innerText = "My Dashboard";
+        // If logged in, maybe show a dashboard link or user name.
+        // For this demo, let's just log it or handle distinct UI elements if they existed.
         if (userNameDisplay) userNameDisplay.innerText = user.name;
-    } else {
-        if (navBtn) navBtn.innerText = "Partner Sign In";
-        if (mobileBtn) mobileBtn.innerText = "Partner Sign In";
     }
+    // Removed the 'else' block that forced 'Partner Sign In' text, allowing the hardcoded HTML buttons to persist.
 }
 
 function updateDashboard() {

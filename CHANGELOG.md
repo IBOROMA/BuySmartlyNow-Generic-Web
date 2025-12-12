@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.0] - 2025-12-12
+### Added
+- **Flight Comparison:** Added "Flights" category with specific comparison logic (TravelStart, Wakanow).
+- **Features:** Expanded "Featured Products" grid to display 8 items.
+
+### Changed
+- **UI:** Redesigned Product Cards to be minimalist with "Material U" styled comparison pills.
+- **Fix:** Resolved issue where "Partner Sign In" text would mistakenly persist over the new Login buttons.
+
 ## [2.3.0] - 2025-12-12
 ### Added
 - **Authentication:** Split "Partner Sign In" into distinct "User Login" and "Affiliate Sign In" options.
