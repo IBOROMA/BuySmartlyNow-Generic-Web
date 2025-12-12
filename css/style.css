@@ -1,0 +1,15 @@
+body { font-family: 'Inter', sans-serif; }
+.fade-in { animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Custom Trust Badge Style */
+.cloudflare-badge {
+    background: linear-gradient(90deg, #f48120, #faad3f);
+    color: white;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}

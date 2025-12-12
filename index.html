@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuySmartlyNow - Compare, Save, Earn</title>
+    <meta name="description" content="Compare prices, find best deals, and earn rewards with our partner program.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#" onclick="showSection('home')" class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">B
+                    </div>
+                    <span class="text-xl font-bold text-gray-900 tracking-tight">BuySmartlyNow</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                    <a href="#" onclick="showSection('home')" class="hover:text-primary transition">Home</a>
+                    <a href="#deals" onclick="showSection('deals')" class="hover:text-primary transition">Deals</a>
+                    <a href="#gadgets" onclick="filterCategory('Gadgets')"
+                        class="hover:text-primary transition">Gadgets</a>
+                    <a href="#food" onclick="filterCategory('Food')" class="hover:text-primary transition">Food</a>
+                    <a href="#delivery" onclick="filterCategory('Delivery')"
+                        class="hover:text-primary transition">Delivery</a>
+                    <a href="#travel" onclick="filterCategory('Travel')"
+                        class="hover:text-primary transition">Travel</a>
+                    <a href="#contact" onclick="showSection('contact')"
+                        class="hover:text-primary transition">Contact</a>
+                </div>
+
+                <!-- Auth/Dashboard Button -->
+                <div class="flex items-center gap-4">
+                    <button id="nav-auth-btn" onclick="toggleAuth()"
+                        class="hidden md:block bg-primary text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">
+                        Partner Sign In
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden text-gray-600 focus:outline-none"
+                        onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-3 shadow-lg">
+            <a href="#" onclick="showSection('home')" class="block text-gray-600 hover:text-primary">Home</a>
+            <a href="#deals" onclick="showSection('deals')" class="block text-gray-600 hover:text-primary">Deals</a>
+            <a href="#gadgets" onclick="filterCategory('Gadgets')"
+                class="block text-gray-600 hover:text-primary">Gadgets</a>
+            <a href="#contact" onclick="showSection('contact')"
+                class="block text-gray-600 hover:text-primary">Contact</a>
+            <button id="mobile-auth-btn" onclick="toggleAuth()"
+                class="w-full text-left font-medium text-primary">Partner Sign In</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section id="home-section" class="fade-in">
+            <div class="bg-gradient-to-r from-blue-50 to-white py-20">
+                <div class="container mx-auto px-4 text-center max-w-3xl">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        Compare Prices. <span class="text-primary">Save Money.</span> Earn Rewards.
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        The smartest way to shop online. Find the best deals across Amazon, Jumia, and more in seconds.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="showSection('deals')"
+                            class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition text-lg shadow-xl shadow-blue-500/20">
+                            Start Comparing
+                        </button>
+                        <button onclick="toggleAuth()"
+                            class="bg-white text-gray-700 border border-gray-200 px-8 py-3 rounded-full font-semibold hover:bg-gray-50 transition text-lg">
+                            Become a Partner
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Categories -->
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="text-2xl font-bold text-center mb-10">Popular Categories</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div onclick="filterCategory('Gadgets')"
+                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
+                        <span class="text-3xl mb-2 block">🎧</span>
+                        <h3 class="font-medium">Gadgets</h3>
+                    </div>
+                    <div onclick="filterCategory('Travel')"
+                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
+                        <span class="text-3xl mb-2 block">✈️</span>
+                        <h3 class="font-medium">Travel</h3>
+                    </div>
+                    <div onclick="filterCategory('Food')"
+                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
+                        <span class="text-3xl mb-2 block">🍔</span>
+                        <h3 class="font-medium">Food</h3>
+                    </div>
+                    <div onclick="filterCategory('Delivery')"
+                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
+                        <span class="text-3xl mb-2 block">🚚</span>
+                        <h3 class="font-medium">Delivery</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEALS SECTION (Product List) -->
+        <section id="deals-section" class="hidden container mx-auto px-4 py-12 fade-in">
+            <h2 id="deals-title" class="text-3xl font-bold mb-8">Latest Deals</h2>
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Products injected via JS -->
+            </div>
+        </section>
+
+        <!-- AUTH SECTION (Partner Program) -->
+        <section id="auth-section" class="hidden container mx-auto px-4 py-20 fade-in">
+            <div class="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold mb-2">Partner Program</h2>
+                    <p class="text-gray-500">Join 10,000+ affiliates earning today.</p>
+                </div>
+                <form id="signup-form" onsubmit="handleSignup(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="name" required
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" required
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition">
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-secondary text-white py-2 rounded-lg font-semibold hover:bg-green-600 transition">
+                        Create Account
+                    </button>
+                    <p class="text-xs text-center text-gray-400 mt-4">By signing up, you agree to our Terms.</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard-section" class="hidden container mx-auto px-4 py-12 fade-in">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Partner Dashboard</h2>
+                <button onclick="handleLogout()" class="text-red-500 font-medium hover:text-red-700">Sign Out</button>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8">
+                <h3 class="text-lg font-medium text-gray-500 mb-2">Welcome back, <span id="user-name"
+                        class="text-gray-900 font-bold">Partner</span>!</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="p-6 bg-blue-50 rounded-xl">
+                        <p class="text-sm text-blue-600 font-semibold uppercase tracking-wider">Total Earnings</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-2">$<span id="earnings">1,250.00</span></p>
+                    </div>
+                    <div class="p-6 bg-green-50 rounded-xl">
+                        <p class="text-sm text-green-600 font-semibold uppercase tracking-wider">Total Clicks</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-2"><span id="clicks">842</span></p>
+                    </div>
+                    <div class="p-6 bg-purple-50 rounded-xl flex flex-col justify-center items-start">
+                        <p class="text-sm text-purple-600 font-semibold uppercase tracking-wider mb-3">Request Payout
+                        </p>
+                        <div class="flex gap-2">
+                            <button
+                                class="bg-white px-3 py-1 rounded border shadow-sm text-sm font-bold text-blue-800">Stripe</button>
+                            <button
+                                class="bg-white px-3 py-1 rounded border shadow-sm text-sm font-bold text-blue-700">PayPal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Link Generator -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h3 class="text-lg font-bold mb-4">Affiliate Link Generator</h3>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" placeholder="Paste product URL here..."
+                        class="flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary outline-none">
+                    <button onclick="alert('Link Generated! Copied to clipboard.')"
+                        class="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Generate
+                        Link</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact-section" class="hidden container mx-auto px-4 py-12 fade-in">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+                <p class="text-gray-600 mb-8">Have questions about a product or our partner program?</p>
+                <a href="mailto:support@buysmartlynow.com"
+                    class="text-primary text-xl font-medium hover:underline">support@buysmartlynow.com</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-auto py-8">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-gray-500">© 2025 BuySmartlyNow. All rights reserved.</p>
+
+            <div class="flex items-center gap-4">
+                <div class="cloudflare-badge">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                    </svg>
+                    <span>Cloudflare Secured</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>
