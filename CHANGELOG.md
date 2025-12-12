@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.0] - 2025-12-12
+### Added
+- **User Authentication:** New Modal-based Login/Signup system.
+- **Features:** "Create Account" (Email/Phone) and mock "Google Login" support.
+- **UI:** Dynamic navbar state that shows User Profile when logged in.
+
+### Fixed
+- **Bugs:** Fixed unresponsive "Login" buttons by rewriting modal logic (`openModal`).
+
 ## [2.4.0] - 2025-12-12
 ### Added
 - **Flight Comparison:** Added "Flights" category with specific comparison logic (TravelStart, Wakanow).

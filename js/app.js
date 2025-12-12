@@ -321,59 +321,132 @@ function filterCategory(category) {
 }
 
 // --- 4. AUTH & DASHBOARD LOGIC ---
-function toggleAuth() {
-    const user = localStorage.getItem('bsn_user');
-    if (user) {
-        showSection('dashboard');
-    } else {
-        showSection('auth');
+// --- 4. AUTH & MODAL LOGIC ---
+
+function openModal(modalId) {
+    const overlay = document.getElementById('modal-overlay');
+    const modal = document.getElementById(modalId);
+    const content = document.getElementById(modalId + '-content');
+
+    if (overlay && modal) {
+        overlay.classList.remove('hidden');
+        modal.classList.remove('hidden');
+
+        // Staggered Animation
+        setTimeout(() => {
+            overlay.classList.remove('opacity-0');
+            if (content) {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }
+        }, 10);
     }
 }
 
-function handleSignup(e) {
+function closeAllModals() {
+    const overlay = document.getElementById('modal-overlay');
+    const modals = document.querySelectorAll('[id$="-modal"]'); // Select all modals
+
+    overlay.classList.add('opacity-0');
+    modals.forEach(modal => {
+        const content = modal.querySelector('[id$="-content"]');
+        if (content) {
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+        }
+    });
+
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        modals.forEach(modal => modal.classList.add('hidden'));
+    }, 300);
+}
+
+function switchAuthTab(tab) {
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const title = document.getElementById('auth-title');
+
+    if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+
+        tabLogin.classList.add('text-blue-600', 'border-blue-600');
+        tabLogin.classList.remove('text-gray-500', 'border-transparent');
+
+        tabSignup.classList.remove('text-blue-600', 'border-blue-600');
+        tabSignup.classList.add('text-gray-500', 'border-transparent');
+
+        title.innerText = "Welcome Back";
+    } else {
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+
+        tabSignup.classList.add('text-blue-600', 'border-blue-600');
+        tabSignup.classList.remove('text-gray-500', 'border-transparent');
+
+        tabLogin.classList.remove('text-blue-600', 'border-blue-600');
+        tabLogin.classList.add('text-gray-500', 'border-transparent');
+
+        title.innerText = "Create Account";
+    }
+}
+
+// --- MOCK AUTH HANDLERS ---
+
+function handleUserLogin(e) {
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
+    closeAllModals();
+    alert("User Logged In Successfully!");
+    updateNavForUser("User");
+}
 
-    const user = { name, email, joined: new Date().toISOString() };
-    localStorage.setItem('bsn_user', JSON.stringify(user));
+function handleUserSignup(e) {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    closeAllModals();
+    alert(`Account Created! Welcome, ${name}. verifying phone number...`);
+    updateNavForUser(name);
+}
 
-    alert('Registration Successful! Welcome to the Partner Program.');
-    checkAuthState(); // Update navbar
+function mockGoogleLogin() {
+    closeAllModals();
+    alert("Connecting to Google Account...");
+    setTimeout(() => {
+        alert("Google Login Successful!");
+        updateNavForUser("Google User");
+    }, 1000);
+}
+
+function handlePartnerLogin(e) {
+    e.preventDefault();
+    closeAllModals();
+    alert("Partner Dashboard Accessed.");
+    // Redirect or show dashboard section
     showSection('dashboard');
 }
 
-function handleLogout() {
-    localStorage.removeItem('bsn_user');
-    alert('Signed out successfully.');
-    checkAuthState();
-    showSection('home');
-}
-
-function checkAuthState() {
-    const userStr = localStorage.getItem('bsn_user');
-    const navBtn = document.getElementById('nav-auth-btn');
-    const mobileBtn = document.getElementById('mobile-auth-btn');
-    const userNameDisplay = document.getElementById('user-name');
-
-    if (userStr) {
-        const user = JSON.parse(userStr);
-        // If logged in, maybe show a dashboard link or user name.
-        // For this demo, let's just log it or handle distinct UI elements if they existed.
-        if (userNameDisplay) userNameDisplay.innerText = user.name;
-    }
-    // Removed the 'else' block that forced 'Partner Sign In' text, allowing the hardcoded HTML buttons to persist.
-}
-
-function updateDashboard() {
-    // In a real app, fetch data from API. Here we rely on static + session clicks.
-    const userStr = localStorage.getItem('bsn_user');
-    if (userStr) {
-        const user = JSON.parse(userStr);
-        const userNameDisplay = document.getElementById('user-name');
-        if (userNameDisplay) userNameDisplay.innerText = user.name;
+function updateNavForUser(name) {
+    // Simple UI update to show logged in state
+    const desktopAuthContainer = document.querySelector('.hidden.md\\:flex.items-center.gap-4');
+    if (desktopAuthContainer) {
+        desktopAuthContainer.innerHTML = `
+            <div class="flex items-center gap-3">
+                <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold border border-blue-200">
+                    ${name.charAt(0)}
+                </div>
+                <span class="font-bold text-gray-700">${name}</span>
+            </div>
+        `;
     }
 }
+
+// Ensure functions are global
+window.openModal = openModal;
+window.closeAllModals = closeAllModals;
+window.switchAuthTab = switchAuthTab;
 
 // --- 5. INITIALIZE ---
 window.addEventListener('DOMContentLoaded', () => {
@@ -381,16 +454,20 @@ window.addEventListener('DOMContentLoaded', () => {
     // Tailwind Config Moved to index.html
 
     renderProducts(); // Pre-render deals in background
-    checkAuthState();
+
+    // Check for logged in user
+    const userStr = localStorage.getItem('bsn_user');
+    if (userStr) {
+        const user = JSON.parse(userStr);
+        updateNavForUser(user.name);
+    }
 
     // Handle Initial Hash
     const hash = window.location.hash.slice(1);
     if (hash) {
-        // Handle explicit section loads
         if (['deals', 'contact', 'gadgets', 'food', 'delivery', 'travel'].includes(hash)) {
             if (['gadgets', 'food', 'delivery', 'travel'].includes(hash)) {
                 // It's a category
-                // Capitalize first letter
                 const category = hash.charAt(0).toUpperCase() + hash.slice(1);
                 filterCategory(category);
             } else {
@@ -399,3 +476,39 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+function handleLogout() {
+    localStorage.removeItem('bsn_user');
+    alert('Signed out successfully.');
+
+    // Reset Nav
+    const container = document.getElementById('desktop-auth-container');
+    if (container) {
+        container.innerHTML = `
+            <button onclick="openModal('login-modal')" class="text-gray-600 font-bold hover:text-blue-600 transition">
+                Login
+            </button>
+            <button onclick="openModal('affiliate-modal')" class="bg-blue-600 text-white px-5 py-2 rounded-full font-bold shadow-md hover:bg-blue-700 hover:shadow-lg transition transform hover:-translate-y-0.5">
+                Affiliate Sign In
+            </button>
+        `;
+    }
+    showSection('home');
+}
+
+function updateNavForUser(name) {
+    const container = document.getElementById('desktop-auth-container');
+    if (container) {
+        container.innerHTML = `
+            <div class="flex items-center gap-3">
+                <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold border border-blue-200">
+                    ${name.charAt(0)}
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-gray-700 text-sm leading-tight">${name}</span>
+                    <button onclick="handleLogout()" class="text-xs text-red-500 hover:underline text-left">Sign Out</button>
+                </div>
+            </div>
+        `;
+    }
+}
