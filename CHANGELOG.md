@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.0] - 2025-12-12
+### Fixed
+- **Assets:** Replaced broken Unsplash product images (Dubai Package, MacBook Air).
+- **UI:** Added Samsung, Apple, and Sony logos to the "Brand Strip".
+
 ## [2.5.0] - 2025-12-12
 ### Added
 - **User Authentication:** New Modal-based Login/Signup system.

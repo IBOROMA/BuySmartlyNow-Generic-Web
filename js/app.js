@@ -91,7 +91,7 @@ const products = [
         id: 4,
         name: "Flights to London (Round Trip)",
         category: "Travel",
-        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=600",
+        image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=600",
         description: "Best rates for summer 2025. Direct flights from Lagos.",
         retailers: [
             { name: "TravelStart", price: "N1,150,000", url: "https://www.travelstart.com.ng", color: "bg-purple-600 text-white" },
@@ -102,7 +102,7 @@ const products = [
         id: 5,
         name: "Dubai Holiday Package (5 Nights)",
         category: "Travel",
-        image: "https://images.unsplash.com/photo-1512453979798-5ea932a23518?auto=format&fit=crop&q=80&w=600",
+        image: "https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&q=80&w=600",
         description: "All-inclusive stay at Atlantis The Palm + Visa.",
         retailers: [
             { name: "Wakanow", price: "N2,500,000", url: "#", color: "bg-blue-600 text-white" },
@@ -125,7 +125,7 @@ const products = [
         id: 7,
         name: "MacBook Pro M3",
         category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca4?auto=format&fit=crop&q=80&w=600",
+        image: "https://images.unsplash.com/photo-1531297461136-82lw8e826359?auto=format&fit=crop&q=80&w=600",
         description: "Must-have for power users.",
         retailers: [
             { name: "Amazon", price: "$1,599", url: "#", color: "bg-gray-900 text-white" },
