@@ -1,15 +1,77 @@
-body { font-family: 'Inter', sans-serif; }
-.fade-in { animation: fadeIn 0.5s ease-in-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Montserrat:wght@400;500;600;700&display=swap');
 
-/* Custom Trust Badge Style */
-.cloudflare-badge {
-    background: linear-gradient(90deg, #f48120, #faad3f);
-    color: white;
-    font-size: 0.7rem;
-    padding: 4px 8px;
-    border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Section */
+.hero-bg {
+    background-color: #007bff;
+    /* Fallback */
+    background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-text-shadow {
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Promo Grid Text Overlays */
+.promo-overlay-text {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Product Card Custom */
+.product-card-hover:hover .product-actions {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.product-actions {
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* Star Rating Static */
+.star-rating {
+    color: #f4be1e;
+    /* Gold */
+}
+
+/* Badge Styles */
+.badge-sale {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Feature Icon Hover */
+.feature-box:hover {
+    transform: translateY(-5px);
 }

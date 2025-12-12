@@ -86,79 +86,181 @@
     <!-- Main Content Area -->
     <main class="flex-grow">
 
-        <!-- HERO SECTION -->
-        <section id="home-section" class="fade-in">
-            <div class="bg-gradient-to-r from-blue-50 to-white py-20">
-                <div class="container mx-auto px-4 text-center max-w-3xl">
-                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                        Compare Prices. <span class="text-primary">Save Money.</span> Earn Rewards.
-                    </h1>
-                    <p class="text-xl text-gray-600 mb-8">
-                        The smartest way to shop online. Find the best deals across Amazon, Jumia, and more in seconds.
-                    </p>
+        <!-- HERO SECTION (DNK Style) -->
+        <section id="home-section" class="fade-in relative">
+            <div class="hero-bg min-h-[600px] flex items-center relative">
+                <!-- Decorative Circle -->
+                <div
+                    class="absolute top-0 right-0 w-2/3 h-full bg-white/5 opacity-20 transform skew-x-12 translate-x-32">
+                </div>
 
-                    <!-- Search Bar -->
-                    <div class="max-w-xl mx-auto mb-10 relative group">
-                        <input type="text" id="hero-search" placeholder="Search for products (e.g. iPhone 15)..."
-                            class="w-full px-6 py-4 rounded-full border border-gray-200 shadow-sm focus:ring-2 focus:ring-primary outline-none transition group-hover:shadow-md"
-                            onkeypress="handleSearch(event)">
-                        <button onclick="handleSearch(event)"
-                            class="absolute right-2 top-2 bg-primary text-white p-2.5 rounded-full hover:bg-blue-700 transition shadow-md">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </button>
+                <div
+                    class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div class="text-white space-y-6">
+                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight hero-text-shadow">
+                            Raining Offers For <br>
+                            <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">Hot
+                                Summer!</span>
+                        </h1>
+                        <p class="text-2xl font-light opacity-90">25% Off On All Products</p>
+
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button onclick="showSection('deals')"
+                                class="bg-white text-blue-600 px-8 py-3.5 rounded-sm font-bold uppercase tracking-widest hover:bg-gray-100 transition shadow-lg transform hover:scale-105 duration-300">
+                                Shop Now
+                            </button>
+                            <button onclick="document.querySelector('#hero-search').focus()"
+                                class="border-2 border-white text-white px-8 py-3.5 rounded-sm font-bold uppercase tracking-widest hover:bg-white/10 transition">
+                                Find More
+                            </button>
+                        </div>
+
+                        <!-- Search Integrated Hero -->
+                        <div class="mt-8 relative max-w-md">
+                            <input type="text" id="hero-search" placeholder="Search "
+                                class="w-full pl-5 pr-12 py-4 rounded-sm text-gray-800 focus:outline-none shadow-xl transform transition focus:scale-[1.02]"
+                                onkeypress="handleSearch(event)">
+                            <button onclick="handleSearch(event)"
+                                class="absolute right-2 top-2 p-2 text-blue-600 hover:text-blue-800">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="showSection('deals')"
-                            class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition text-lg shadow-xl shadow-blue-500/20">
-                            Start Comparing
-                        </button>
-                        <button onclick="toggleAuth()"
-                            class="bg-white text-gray-700 border border-gray-200 px-8 py-3 rounded-full font-semibold hover:bg-gray-50 transition text-lg">
-                            Become a Partner
-                        </button>
+
+                    <!-- Hero Image -->
+                    <div class="hidden md:block relative">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=600&h=800"
+                            alt="Fashion Model"
+                            class="rounded-lg shadow-2xl transform rotate-1 hover:rotate-0 transition duration-500 object-cover h-[500px] w-full border-4 border-white/20">
                     </div>
                 </div>
             </div>
 
-            <!-- Featured Categories -->
-            <div class="container mx-auto px-4 py-16">
-                <h2 class="text-2xl font-bold text-center mb-10">Popular Categories</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Brand Strip -->
+            <div class="bg-white border-b py-8 overflow-hidden">
+                <div
+                    class="container mx-auto px-4 flex flex-wrap justify-between items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500 gap-8 justify-center md:justify-between">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Brand"
+                        class="h-12 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Brand"
+                        class="h-10 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Under_armour_logo.svg" alt="Brand"
+                        class="h-12 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Puma_Logo.svg" alt="Brand"
+                        class="h-12 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/New_Balance_logo.svg" alt="Brand"
+                        class="h-10 w-auto">
+                </div>
+            </div>
+
+            <!-- Promo Grid (3 Column) -->
+            <div class="container mx-auto px-4 py-20">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
                     <div onclick="filterCategory('Gadgets')"
-                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
-                        <span class="text-3xl mb-2 block">🎧</span>
-                        <h3 class="font-medium">Gadgets</h3>
+                        class="relative h-[400px] group cursor-pointer overflow-hidden rounded-md">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=500"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500"></div>
+                        <div class="absolute bottom-10 left-8 text-white z-10">
+                            <h3 class="text-2xl font-bold mb-2">20% Off On Gadgets</h3>
+                            <p class="mb-4 text-gray-200">Latest tech trends.</p>
+                            <span
+                                class="inline-block px-6 py-2 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Shop
+                                Now</span>
+                        </div>
                     </div>
+                    <!-- Card 2 -->
                     <div onclick="filterCategory('Travel')"
-                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
-                        <span class="text-3xl mb-2 block">✈️</span>
-                        <h3 class="font-medium">Travel</h3>
+                        class="relative h-[400px] group cursor-pointer overflow-hidden rounded-md">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=500"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500"></div>
+                        <div class="absolute bottom-10 left-8 text-white z-10">
+                            <h3 class="text-2xl font-bold mb-2">Latest Travel Deals</h3>
+                            <p class="mb-4 text-gray-200">Fly for less.</p>
+                            <span
+                                class="inline-block px-6 py-2 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Explore</span>
+                        </div>
                     </div>
-                    <div onclick="filterCategory('Food')"
-                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
-                        <span class="text-3xl mb-2 block">🍔</span>
-                        <h3 class="font-medium">Food</h3>
-                    </div>
-                    <div onclick="filterCategory('Delivery')"
-                        class="cursor-pointer bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center border border-gray-100">
-                        <span class="text-3xl mb-2 block">🚚</span>
-                        <h3 class="font-medium">Delivery</h3>
+                    <!-- Card 3 -->
+                    <div onclick="filterCategory('Fashion')"
+                        class="relative h-[400px] group cursor-pointer overflow-hidden rounded-md">
+                        <img src="https://images.unsplash.com/photo-1507680434567-5739c8a95262?auto=format&fit=crop&q=80&w=500"
+                            class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500"></div>
+                        <div class="absolute bottom-10 left-8 text-white z-10">
+                            <h3 class="text-2xl font-bold mb-2">Let's Suit Up!</h3>
+                            <p class="mb-4 text-gray-200">Premium collection.</p>
+                            <span
+                                class="inline-block px-6 py-2 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Shop
+                                Now</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Featured Mock Products -->
-            <div class="container mx-auto px-4 pb-16">
-                <div class="flex justify-between items-end mb-8">
-                    <h2 class="text-2xl font-bold">Featured Deals</h2>
-                    <a href="#deals" onclick="showSection('deals')"
-                        class="text-primary font-medium hover:underline">View All &rarr;</a>
+            <div class="container mx-auto px-4 pb-20">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-900">Featured Products</h2>
+                    <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
                 </div>
-                <div id="featured-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <div id="featured-grid" class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Special Edition Banner -->
+            <div
+                class="bg-gray-100 py-20 relative overflow-hidden bg-[url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=1500')] bg-cover bg-center bg-fixed">
+                <div class="absolute inset-0 bg-blue-900/40"></div>
+                <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2 text-white">
+                        <h4
+                            class="text-lg font-bold mb-4 uppercase tracking-wider bg-white/20 inline-block px-4 py-1 rounded-full">
+                            Limited Time Offer</h4>
+                        <h2 class="text-5xl font-extrabold mb-6">Special Edition</h2>
+                        <p class="text-lg mb-8 opacity-90 leading-relaxed">Unlock exclusive partner deals on premium
+                            electronics and fashion. Use code <span
+                                class="font-mono bg-white text-blue-900 px-2 py-1 rounded">OFF20</span> for extra
+                            discounts.</p>
+                        <h3 class="text-2xl font-bold mb-8">Buy This At 20% Discount</h3>
+                        <button onclick="showSection('deals')"
+                            class="bg-white text-gray-900 px-10 py-4 font-bold uppercase tracking-widest hover:bg-gray-100 transition shadow-xl">Shop
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Strip -->
+            <div class="bg-white py-20">
+                <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
+                    <div class="feature-box transition duration-300 p-6">
+                        <div class="text-5xl mb-6 text-gray-800">🌍</div> <!-- Replace with SVG later -->
+                        <h3 class="text-xl font-bold mb-3">Worldwide Shipping</h3>
+                        <p class="text-gray-500 text-sm">Affiliate partners deliver globally.</p>
+                    </div>
+                    <div class="feature-box transition duration-300 p-6">
+                        <div class="text-5xl mb-6 text-gray-800">👕</div>
+                        <h3 class="text-xl font-bold mb-3">Best Quality</h3>
+                        <p class="text-gray-500 text-sm">Verified retailers and brands.</p>
+                    </div>
+                    <div class="feature-box transition duration-300 p-6">
+                        <div class="text-5xl mb-6 text-gray-800">🎁</div>
+                        <h3 class="text-xl font-bold mb-3">Best Offers</h3>
+                        <p class="text-gray-500 text-sm">New deals updated daily.</p>
+                    </div>
+                    <div class="feature-box transition duration-300 p-6">
+                        <div class="text-5xl mb-6 text-gray-800">🔒</div>
+                        <h3 class="text-xl font-bold mb-3">Secure Payments</h3>
+                        <p class="text-gray-500 text-sm">Payments handled by trusted platforms.</p>
+                    </div>
                 </div>
             </div>
         </section>

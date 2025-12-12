@@ -127,10 +127,11 @@ function renderProducts(filter = null, type = 'category') {
         }
     }
 
-    // Render Featured Grid (Home Page - Top 3) - Only if not searching/filtering
+    // Render Featured Grid (Home Page - Top 4)
     if (featuredGrid && !filter) {
         featuredGrid.innerHTML = '';
-        products.slice(0, 3).forEach(product => featuredGrid.appendChild(createProductCard(product)));
+        // Show 4 items for the new grid layout
+        products.slice(0, 4).forEach(product => featuredGrid.appendChild(createProductCard(product)));
     }
 }
 
@@ -148,48 +149,60 @@ function handleSearch(e) {
 
 function createProductCard(product) {
     const card = document.createElement('div');
-    card.className = "bg-white rounded-xl shadow-sm hover:shadow-lg transition border border-gray-100 overflow-hidden flex flex-col";
+    card.className = "group bg-transparent"; // Removed default card styling to match clean look
 
-    // 1. Sort Retailers by Price (Generic Parser)
-    // Remove symbols and sort
+    // 1. Sort Retailers by Price
     const sortedRetailers = [...product.retailers].sort((a, b) => {
         const priceA = parseInt(a.price.replace(/[^0-9]/g, ''));
         const priceB = parseInt(b.price.replace(/[^0-9]/g, ''));
         return priceA - priceB;
     });
 
-    let retailersHtml = '';
-    sortedRetailers.forEach((retailer, index) => {
-        const isBestPrice = index === 0;
-        const badge = isBestPrice ? '<span class="ml-2 bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-bold">Best Price</span>' : '';
-        const borderClass = isBestPrice ? 'border-2 border-green-500 ring-2 ring-green-100' : 'border border-gray-200';
+    const bestPrice = sortedRetailers[0].price;
+    const oldPrice = sortedRetailers[0].price.replace(/[^0-9]/g, '') * 1.2; // Mock old price
 
-        retailersHtml += `
-            <a href="${retailer.url}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event)" class="flex justify-between items-center w-full px-4 py-3 rounded-lg text-sm font-semibold mb-2 transition hover:opacity-90 ${retailer.color} ${isBestPrice ? 'order-first' : ''}">
-                <div class="flex items-center">
-                    <span>Buy on ${retailer.name}</span>
-                    ${isBestPrice ? '<span class="ml-2 bg-white/20 text-white text-[10px] px-1.5 py-0.5 rounded uppercase tracking-wider">Best Deal</span>' : ''}
-                </div>
-                <span>${retailer.price}</span>
-            </a>
-        `;
-    });
+    // Retailer Logic (Hidden by default, shown on click/hover detail - Simplified for 'DNK' look to just show 'Shop' button or best price)
+    // For this design, we'll keep it simple: Image -> Title -> Stars -> Price
 
     card.innerHTML = `
-        <div class="h-48 overflow-hidden relative group">
-            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur text-xs font-bold px-2 py-1 rounded-full text-gray-800">${product.category}</span>
+        <div class="relative overflow-hidden mb-4">
+             <img src="${product.image}" alt="${product.name}" class="w-full h-[300px] object-cover transition duration-500 group-hover:scale-105">
+
+             <!-- Sale Badge -->
+             <div class="absolute top-4 left-4 bg-white rounded-full h-12 w-12 flex items-center justify-center shadow-md badge-sale">
+                <span class="text-xs font-bold text-gray-900">Sale!</span>
+             </div>
+
+             <!-- Hover Actions -->
+             <div class="absolute top-4 right-4 flex flex-col gap-2 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition duration-300">
+                <button class="bg-white p-2 rounded-full shadow-md hover:bg-black hover:text-white transition"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></button>
+             </div>
         </div>
-        <div class="p-5 flex flex-col flex-grow">
-            <h3 class="font-bold text-lg text-gray-900 mb-2 leading-tight">${product.name}</h3>
-            <p class="text-sm text-gray-500 mb-6 flex-grow">${product.description}</p>
-            
-            <div class="mt-auto">
-                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Compare Prices</p>
-                <div class="flex flex-col gap-1">
-                    ${retailersHtml}
-                </div>
+
+        <div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1 leading-tight">${product.name}</h3>
+            <p class="text-sm text-gray-400 mb-2">${product.category}</p>
+
+            <!-- Price Block -->
+            <div class="flex items-center gap-3 mb-2">
+                <span class="text-gray-400 line-through text-sm">Now</span>
+                <span class="text-gray-900 font-bold text-lg">${bestPrice}</span>
             </div>
+
+            <!-- Stars -->
+            <div class="flex text-yellow-500 text-sm mb-3 star-rating">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span class="text-gray-300">★</span>
+            </div>
+
+            <!-- Swatches (Mock) -->
+            <div class="flex gap-2 mb-4">
+                <div class="w-4 h-4 rounded-full bg-blue-500 border border-gray-200 cursor-pointer hover:scale-110 transition"></div>
+                <div class="w-4 h-4 rounded-full bg-green-500 border border-gray-200 cursor-pointer hover:scale-110 transition"></div>
+                <div class="w-4 h-4 rounded-full bg-red-500 border border-gray-200 cursor-pointer hover:scale-110 transition"></div>
+            </div>
+
+             <!-- Retailer Link Button -->
+             <a href="${sortedRetailers[0].url}" onclick="trackClick(event)" class="inline-block border border-gray-900 text-gray-900 px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-gray-900 hover:text-white transition">Check Deal</a>
         </div>
     `;
     return card;
