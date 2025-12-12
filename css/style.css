@@ -14,10 +14,6 @@ h6 {
 }
 
 /* Custom Animations */
-.fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -28,6 +24,58 @@ h6 {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slowZoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes bounceSlow {
+
+    0%,
+    100% {
+        transform: translateY(-5%);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+    opacity: 0;
+    /* Start hidden */
+    animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slow-zoom {
+    animation: slowZoom 20s linear infinite alternate;
+}
+
+.animate-bounce-slow {
+    animation: bounceSlow 2s infinite;
 }
 
 /* Hero Section */
