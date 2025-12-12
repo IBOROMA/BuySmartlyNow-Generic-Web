@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2025-12-12
+### Added
+- **Christmas Theme:** Full-width "Season's Greetings" Hero section using Unsplash holiday imagery.
+- **Visuals:** Implemented gradient overlays to blend the hero image seamlessly into the white content area.
+- **Copy:** Updated festive text ("Unwrap The Best Christmas Deals").
+
 ## [2.1.0] - 2025-12-12
 ### Changed
 - **Hero Section:** Refined to "Clean White" theme with side-by-side image layout and Yellow emphasis text.
