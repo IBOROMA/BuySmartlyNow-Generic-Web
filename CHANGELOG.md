@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2025-12-12
+### Added
+- **Authentication:** Split "Partner Sign In" into distinct "User Login" and "Affiliate Sign In" options.
+- **UX:** Added smooth, staggered entry animations (`slide-up`, `slow-zoom`) for a premium feel.
+
 ## [2.2.0] - 2025-12-12
 ### Added
 - **Christmas Theme:** Full-width "Season's Greetings" Hero section using Unsplash holiday imagery.
