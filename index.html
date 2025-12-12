@@ -86,119 +86,115 @@
     <!-- Main Content Area -->
     <main class="flex-grow">
 
-        <!-- HERO SECTION (DNK Style) -->
-        <section id="home-section" class="fade-in relative">
-            <div class="hero-bg min-h-[600px] flex items-center relative">
-                <!-- Decorative Circle -->
-                <div
-                    class="absolute top-0 right-0 w-2/3 h-full bg-white/5 opacity-20 transform skew-x-12 translate-x-32">
-                </div>
+        <!-- HERO SECTION (DNK Style - Refined) -->
+        <section id="home-section" class="fade-in relative pt-10 pb-20 bg-white overflow-hidden">
+            <div
+                class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10 min-h-[600px]">
 
-                <div
-                    class="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
-                    <div class="text-white space-y-6">
-                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight hero-text-shadow">
-                            Raining Offers For <br>
-                            <span
-                                class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">Hot
-                                Summer!</span>
-                        </h1>
-                        <p class="text-2xl font-light opacity-90">25% Off On All Products</p>
+                <!-- Text Content -->
+                <div class="space-y-6 relative z-20">
+                    <h1 class="text-6xl md:text-8xl font-bold leading-tight tracking-tight">
+                        <span class="text-gray-100 block transform -translate-x-1">Raining Offers For</span>
+                        <span class="text-yellow-400 block tracking-wide">Hot Summer!</span>
+                    </h1>
+                    <p class="text-2xl font-light text-gray-800">25% Off On All Products</p>
 
-                        <div class="flex flex-wrap gap-4 pt-4">
-                            <button onclick="showSection('deals')"
-                                class="bg-white text-blue-600 px-8 py-3.5 rounded-sm font-bold uppercase tracking-widest hover:bg-gray-100 transition shadow-lg transform hover:scale-105 duration-300">
-                                Shop Now
-                            </button>
-                            <button onclick="document.querySelector('#hero-search').focus()"
-                                class="border-2 border-white text-white px-8 py-3.5 rounded-sm font-bold uppercase tracking-widest hover:bg-white/10 transition">
-                                Find More
-                            </button>
-                        </div>
-
-                        <!-- Search Integrated Hero -->
-                        <div class="mt-8 relative max-w-md">
-                            <input type="text" id="hero-search" placeholder="Search "
-                                class="w-full pl-5 pr-12 py-4 rounded-sm text-gray-800 focus:outline-none shadow-xl transform transition focus:scale-[1.02]"
-                                onkeypress="handleSearch(event)">
-                            <button onclick="handleSearch(event)"
-                                class="absolute right-2 top-2 p-2 text-blue-600 hover:text-blue-800">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </button>
-                        </div>
+                    <div class="flex flex-wrap gap-4 pt-6">
+                        <button onclick="showSection('deals')"
+                            class="bg-blue-600 text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-blue-700 transition shadow-lg">
+                            Shop Now
+                        </button>
+                        <button onclick="document.querySelector('#hero-search').focus()"
+                            class="border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-sm font-bold uppercase tracking-widest hover:bg-gray-50 transition">
+                            Find More
+                        </button>
                     </div>
 
-                    <!-- Hero Image -->
-                    <div class="hidden md:block relative">
-                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=600&h=800"
-                            alt="Fashion Model"
-                            class="rounded-lg shadow-2xl transform rotate-1 hover:rotate-0 transition duration-500 object-cover h-[500px] w-full border-4 border-white/20">
+                    <!-- Search Integrated -->
+                    <div class="mt-10 relative max-w-md">
+                        <input type="text" id="hero-search" placeholder="Search..."
+                            class="w-full pl-6 pr-12 py-4 rounded-sm bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:outline-none transition shadow-sm"
+                            onkeypress="handleSearch(event)">
+                        <button onclick="handleSearch(event)"
+                            class="absolute right-3 top-3 p-2 text-blue-600 hover:text-blue-800">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Image (Card Style) -->
+                <div class="relative z-10 flex justify-end">
+                    <div class="relative w-full max-w-lg aspect-[3/4]">
+                        <!-- Main Image -->
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800"
+                            alt="Summer Collection" class="w-full h-full object-cover shadow-2xl rounded-sm">
                     </div>
                 </div>
             </div>
 
             <!-- Brand Strip -->
-            <div class="bg-white border-b py-8 overflow-hidden">
+            <div class="bg-white border-t border-b py-10 mt-10">
                 <div
-                    class="container mx-auto px-4 flex flex-wrap justify-between items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500 gap-8 justify-center md:justify-between">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Brand"
-                        class="h-12 w-auto">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Brand"
-                        class="h-10 w-auto">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Under_armour_logo.svg" alt="Brand"
-                        class="h-12 w-auto">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Puma_Logo.svg" alt="Brand"
-                        class="h-12 w-auto">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/New_Balance_logo.svg" alt="Brand"
-                        class="h-10 w-auto">
+                    class="container mx-auto px-4 flex flex-wrap justify-between items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500 gap-12 justify-center md:justify-between">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Adidas"
+                        class="h-8 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike"
+                        class="h-6 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Under_armour_logo.svg"
+                        alt="Under Armour" class="h-8 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Puma_Logo.svg" alt="Puma"
+                        class="h-8 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/New_Balance_logo.svg"
+                        alt="New Balance" class="h-6 w-auto">
                 </div>
             </div>
 
             <!-- Promo Grid (3 Column) -->
-            <div class="container mx-auto px-4 py-20">
+            <div class="container mx-auto px-4 py-24">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Card 1 -->
                     <div onclick="filterCategory('Gadgets')"
-                        class="relative h-[400px] group cursor-pointer overflow-hidden rounded-md">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=500"
+                        class="relative h-[450px] group cursor-pointer overflow-hidden rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=600"
                             class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500"></div>
                         <div class="absolute bottom-10 left-8 text-white z-10">
                             <h3 class="text-2xl font-bold mb-2">20% Off On Gadgets</h3>
-                            <p class="mb-4 text-gray-200">Latest tech trends.</p>
+                            <p class="mb-4 text-gray-100 font-light">Latest tech trends.</p>
                             <span
-                                class="inline-block px-6 py-2 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Shop
+                                class="inline-block px-8 py-3 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Shop
                                 Now</span>
                         </div>
                     </div>
                     <!-- Card 2 -->
                     <div onclick="filterCategory('Travel')"
-                        class="relative h-[400px] group cursor-pointer overflow-hidden rounded-md">
-                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=500"
+                        class="relative h-[450px] group cursor-pointer overflow-hidden rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=600"
                             class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500"></div>
                         <div class="absolute bottom-10 left-8 text-white z-10">
                             <h3 class="text-2xl font-bold mb-2">Latest Travel Deals</h3>
-                            <p class="mb-4 text-gray-200">Fly for less.</p>
+                            <p class="mb-4 text-gray-100 font-light">Fly for less.</p>
                             <span
-                                class="inline-block px-6 py-2 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Explore</span>
+                                class="inline-block px-8 py-3 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Check
+                                Out</span>
                         </div>
                     </div>
                     <!-- Card 3 -->
                     <div onclick="filterCategory('Fashion')"
-                        class="relative h-[400px] group cursor-pointer overflow-hidden rounded-md">
-                        <img src="https://images.unsplash.com/photo-1507680434567-5739c8a95262?auto=format&fit=crop&q=80&w=500"
+                        class="relative h-[450px] group cursor-pointer overflow-hidden rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1507680434567-5739c8a95262?auto=format&fit=crop&q=80&w=600"
                             class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-500"></div>
                         <div class="absolute bottom-10 left-8 text-white z-10">
                             <h3 class="text-2xl font-bold mb-2">Let's Suit Up!</h3>
-                            <p class="mb-4 text-gray-200">Premium collection.</p>
+                            <p class="mb-4 text-gray-100 font-light">Premium collection.</p>
                             <span
-                                class="inline-block px-6 py-2 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Shop
-                                Now</span>
+                                class="inline-block px-8 py-3 bg-white text-gray-900 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition">Check
+                                Out</span>
                         </div>
                     </div>
                 </div>
@@ -208,7 +204,7 @@
             <div class="container mx-auto px-4 pb-20">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <h2 class="text-4xl font-bold mb-4 text-gray-900">Featured Products</h2>
-                    <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
+                    <div class="h-0.5 w-16 bg-blue-600 mx-auto"></div>
                 </div>
 
                 <div id="featured-grid" class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -216,49 +212,47 @@
                 </div>
             </div>
 
-            <!-- Special Edition Banner -->
-            <div
-                class="bg-gray-100 py-20 relative overflow-hidden bg-[url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=1500')] bg-cover bg-center bg-fixed">
-                <div class="absolute inset-0 bg-blue-900/40"></div>
-                <div class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2 text-white">
-                        <h4
-                            class="text-lg font-bold mb-4 uppercase tracking-wider bg-white/20 inline-block px-4 py-1 rounded-full">
-                            Limited Time Offer</h4>
-                        <h2 class="text-5xl font-extrabold mb-6">Special Edition</h2>
-                        <p class="text-lg mb-8 opacity-90 leading-relaxed">Unlock exclusive partner deals on premium
-                            electronics and fashion. Use code <span
-                                class="font-mono bg-white text-blue-900 px-2 py-1 rounded">OFF20</span> for extra
-                            discounts.</p>
+            <!-- Special Edition Banner (Full Picture Blend) -->
+            <div class="h-[600px] relative overflow-hidden bg-cover bg-center bg-no-repeat"
+                style="background-image: url('https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&q=90&w=1600')">
+                <!-- Gradient Overlay to ensure text readability -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/40 via-blue-800/20 to-transparent"></div>
+
+                <div class="container mx-auto px-4 h-full flex flex-col justify-center relative z-10">
+                    <div class="max-w-xl text-white pl-4 md:pl-0">
+                        <h4 class="text-lg font-bold mb-4 uppercase tracking-wider">Limited Time Offer</h4>
+                        <h2 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">Special Edition</h2>
+                        <p class="text-lg mb-8 opacity-90 leading-relaxed font-light">Unlock exclusive partner deals on
+                            premium electronics and fashion. Use code <span class="font-bold">OFF20</span>.</p>
                         <h3 class="text-2xl font-bold mb-8">Buy This At 20% Discount</h3>
                         <button onclick="showSection('deals')"
-                            class="bg-white text-gray-900 px-10 py-4 font-bold uppercase tracking-widest hover:bg-gray-100 transition shadow-xl">Shop
+                            class="bg-white text-blue-900 px-10 py-4 font-bold uppercase tracking-widest hover:bg-gray-100 transition shadow-xl">Shop
                             Now</button>
                     </div>
                 </div>
             </div>
 
             <!-- Features Strip -->
-            <div class="bg-white py-20">
+            <div class="bg-white py-24 border-t">
                 <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
-                    <div class="feature-box transition duration-300 p-6">
-                        <div class="text-5xl mb-6 text-gray-800">🌍</div> <!-- Replace with SVG later -->
-                        <h3 class="text-xl font-bold mb-3">Worldwide Shipping</h3>
+                    <div class="feature-box p-4">
+                        <div class="text-5xl mb-6 text-gray-800">🌍</div>
+                        <h3 class="text-xl font-bold mb-2">Worldwide Shipping</h3>
                         <p class="text-gray-500 text-sm">Affiliate partners deliver globally.</p>
                     </div>
-                    <div class="feature-box transition duration-300 p-6">
+                    <div class="feature-box p-4">
                         <div class="text-5xl mb-6 text-gray-800">👕</div>
-                        <h3 class="text-xl font-bold mb-3">Best Quality</h3>
+                        <h3 class="text-xl font-bold mb-2">Best Quality</h3>
                         <p class="text-gray-500 text-sm">Verified retailers and brands.</p>
                     </div>
-                    <div class="feature-box transition duration-300 p-6">
+                    <div class="feature-box p-4">
                         <div class="text-5xl mb-6 text-gray-800">🎁</div>
-                        <h3 class="text-xl font-bold mb-3">Best Offers</h3>
+                        <h3 class="text-xl font-bold mb-2">Best Offers</h3>
                         <p class="text-gray-500 text-sm">New deals updated daily.</p>
                     </div>
-                    <div class="feature-box transition duration-300 p-6">
+                    <div class="feature-box p-4">
                         <div class="text-5xl mb-6 text-gray-800">🔒</div>
-                        <h3 class="text-xl font-bold mb-3">Secure Payments</h3>
+                        <h3 class="text-xl font-bold mb-2">Secure Payments</h3>
                         <p class="text-gray-500 text-sm">Payments handled by trusted platforms.</p>
                     </div>
                 </div>
