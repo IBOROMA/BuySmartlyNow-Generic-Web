@@ -228,14 +228,14 @@ function trackClick(e) {
 // --- 3. NAVIGATION LOGIC ---
 function showSection(sectionName) {
     // Hide all
-    ['home-section', 'deals-section', 'flights-section', 'auth-section', 'dashboard-section', 'contact-section', 'travel-section'].forEach(id => {
+    ['home-view', 'deals-section', 'flights-section', 'auth-section', 'dashboard-section', 'contact-section', 'travel-section'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('hidden');
     });
 
     // Show selected
-    if (sectionName === 'home') document.getElementById('home-section')?.classList.remove('hidden');
-    if (sectionName === 'marketing') document.getElementById('home-section')?.classList.remove('hidden'); // Fallback
+    if (sectionName === 'home') document.getElementById('home-view')?.classList.remove('hidden');
+    if (sectionName === 'marketing') document.getElementById('home-view')?.classList.remove('hidden'); // Fallback
     if (sectionName === 'deals') {
         document.getElementById('deals-section')?.classList.remove('hidden');
         const titleEl = document.getElementById('deals-title');
