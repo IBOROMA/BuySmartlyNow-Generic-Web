@@ -46,7 +46,7 @@ const products = [
         id: 6,
         name: "MacBook Air M2",
         category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca4?auto=format&fit=crop&q=80&w=600",
+        image: "https://images.unsplash.com/photo-1661961110218-35688a456c3e?auto=format&fit=crop&q=80&w=600",
         description: "Supercharged by M2. 18 hours battery life. Stunning Liquid Retina display.",
         retailers: [
             { name: "Amazon", price: "$999", url: "/go/amazon/macbook", color: "bg-gray-800 text-white" },
@@ -68,7 +68,7 @@ const products = [
         id: 8,
         name: "Dubai Vacation Package",
         category: "Travel",
-        image: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=600",
+        image: "https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&q=80&w=600",
         description: "5 Nights at Atlantis The Palm + Flight + Visa.",
         retailers: [
             { name: "Wakanow", price: "₦2,500,000", url: "/go/wakanow/dubai", color: "bg-blue-600 text-white" }
@@ -227,7 +227,7 @@ function trackClick(e) {
 // --- 3. NAVIGATION LOGIC ---
 function showSection(sectionName) {
     // Hide all
-    ['home-section', 'deals-section', 'flights-section', 'auth-section', 'dashboard-section', 'contact-section'].forEach(id => {
+    ['home-section', 'deals-section', 'flights-section', 'auth-section', 'dashboard-section', 'contact-section', 'travel-section'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('hidden');
     });
@@ -241,8 +241,20 @@ function showSection(sectionName) {
         if (titleEl) titleEl.innerText = "All Deals";
         renderProducts();
     }
-    if (sectionName === 'contact') document.getElementById('contact-section')?.classList.remove('hidden');
-    if (sectionName === 'flights') document.getElementById('flights-section')?.classList.remove('hidden');
+    if (sectionName === 'contact') document.getElementById('footer-contact')?.scrollIntoView({ behavior: 'smooth' });
+    if (sectionName === 'flights') {
+        showSection('travel');
+        switchTravelTab('flights');
+    }
+    if (sectionName === 'travel') {
+        document.getElementById('travel-section')?.classList.remove('hidden');
+        // Default to Deals if not specified, but let's keep state? 
+        // For now, default to deals unless flight requested
+        if (!document.querySelector('#tab-travel-flights').classList.contains('text-primary')) {
+            switchTravelTab('deals');
+        }
+        renderProducts('Travel', 'category'); // Ensure deals are rendered
+    }
 
     // Auth Handling
     if (sectionName === 'auth') {
@@ -397,10 +409,113 @@ function updateNavForUser(name) {
     }
 }
 
+// --- 5. TRAVEL & FLIGHT LOGIC ---
+function switchTravelTab(tab) {
+    const dealsTab = document.getElementById('tab-travel-deals');
+    const flightsTab = document.getElementById('tab-travel-flights');
+    const dealsContent = document.getElementById('travel-deals-tab');
+    const flightContent = document.getElementById('flight-compare-tab');
+
+    if (tab === 'deals') {
+        dealsTab?.classList.add('bg-white', 'text-primary', 'shadow-sm');
+        dealsTab?.classList.remove('text-gray-500', 'hover:text-gray-900');
+
+        flightsTab?.classList.remove('bg-white', 'text-primary', 'shadow-sm');
+        flightsTab?.classList.add('text-gray-500', 'hover:text-gray-900');
+
+        dealsContent?.classList.remove('hidden');
+        flightContent?.classList.add('hidden');
+
+        // Render Travel Deals specifically into the travel grid
+        const travelGrid = document.getElementById('travel-product-grid');
+        if (travelGrid) {
+            travelGrid.innerHTML = '';
+            const travelProducts = products.filter(p => p.category === 'Travel');
+            if (travelProducts.length > 0) {
+                travelProducts.forEach(product => travelGrid.appendChild(createProductCard(product)));
+            } else {
+                travelGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">No travel deals available right now.</p>';
+            }
+        }
+
+    } else {
+        flightsTab?.classList.add('bg-white', 'text-blue-600', 'shadow-sm');
+        flightsTab?.classList.remove('text-gray-500', 'hover:text-gray-900');
+
+        dealsTab?.classList.remove('bg-white', 'text-primary', 'shadow-sm');
+        dealsTab?.classList.add('text-gray-500', 'hover:text-gray-900');
+
+        flightContent?.classList.remove('hidden');
+        dealsContent?.classList.add('hidden');
+    }
+}
+
+function handleFlightSearch(e) {
+    e.preventDefault();
+    const origin = document.getElementById('flight-origin').value;
+    const dest = document.getElementById('flight-dest').value;
+    const resultsContainer = document.getElementById('flight-results');
+    const btn = document.getElementById('search-flights-btn');
+
+    if (!dest) {
+        alert("Please enter a destination");
+        return;
+    }
+
+    // Loading State
+    btn.innerHTML = '<svg class="animate-spin h-5 w-5 text-white inline mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Searching...';
+
+    setTimeout(() => {
+        resultsContainer.classList.remove('hidden');
+        resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        btn.innerHTML = 'Compare Flight Prices';
+
+        // Mock Results
+        const carriers = [
+            { name: "Qatar Airways", price: "₦1,250,500", time: "6h 45m", stops: "Direct", logo: "https://logo.clearbit.com/qatarairways.com" },
+            { name: "British Airways", price: "₦1,420,000", time: "7h 15m", stops: "Direct", logo: "https://logo.clearbit.com/britishairways.com" },
+            { name: "Virgin Atlantic", price: "₦1,150,000", time: "7h 00m", stops: "Direct", logo: "https://logo.clearbit.com/virginatlantic.com" },
+            { name: "Air Peace", price: "₦950,000", time: "6h 30m", stops: "Direct", logo: "https://logo.clearbit.com/flyairpeace.com" },
+            { name: "Emirates", price: "₦1,550,000", time: "8h 30m", stops: "1 Stop", logo: "https://logo.clearbit.com/emirates.com" }
+        ];
+
+        let html = '';
+        carriers.forEach(c => {
+            html += `
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 hover:shadow-md transition">
+                    <div class="flex items-center gap-4 w-full md:w-auto">
+                        <img src="${c.logo}" alt="${c.name}" class="w-12 h-12 rounded-full object-contain bg-gray-50 p-1 border">
+                        <div>
+                            <h4 class="font-bold text-gray-900">${c.name}</h4>
+                            <p class="text-xs text-gray-500">${origin.split('(')[0]} ➝ ${dest}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-8 w-full md:w-auto justify-between md:justify-start">
+                        <div class="text-center">
+                            <p class="font-bold text-gray-900">${c.time}</p>
+                            <p class="text-xs text-gray-400">${c.stops}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-extrabold text-blue-600">${c.price}</p>
+                            <button onclick="window.open('https://www.google.com/search?q=flight+${c.name.toLowerCase().replace(' ', '+')}+${dest}', '_blank')" class="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-black transition">Select</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        resultsContainer.innerHTML = html;
+
+    }, 1500);
+}
+
 // Ensure functions are global
 window.openModal = openModal;
 window.closeAllModals = closeAllModals;
 window.switchAuthTab = switchAuthTab;
+window.switchTravelTab = switchTravelTab;
+window.handleFlightSearch = handleFlightSearch;
 
 // --- 5. INITIALIZE ---
 window.addEventListener('DOMContentLoaded', () => {
