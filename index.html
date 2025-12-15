@@ -49,6 +49,8 @@
                         class="hover:text-primary transition">Delivery</a>
                     <a href="#travel" onclick="filterCategory('Travel')"
                         class="hover:text-primary transition">Travel</a>
+                    <a href="#flight-compare" onclick="showSection('flights')"
+                        class="hover:text-primary transition font-bold text-blue-600">Flight Compare</a>
                     <a href="#contact" onclick="showSection('contact')"
                         class="hover:text-primary transition">Contact</a>
                 </div>
@@ -80,6 +82,8 @@
             <a href="#deals" onclick="showSection('deals')" class="block text-gray-600 hover:text-primary">Deals</a>
             <a href="#gadgets" onclick="filterCategory('Gadgets')"
                 class="block text-gray-600 hover:text-primary">Gadgets</a>
+            <a href="#flight-compare" onclick="showSection('flights')"
+                class="block text-blue-600 font-bold hover:text-primary">Flight Compare</a>
             <a href="#contact" onclick="showSection('contact')"
                 class="block text-gray-600 hover:text-primary">Contact</a>
             <button id="mobile-auth-btn" onclick="toggleAuth()"
@@ -152,24 +156,24 @@
         <!-- Brand Strip -->
         <div class="bg-white border-t border-b py-10 mt-10">
             <div
-                class="container mx-auto px-4 flex flex-wrap justify-between items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500 gap-12 justify-center md:justify-between">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" alt="Adidas"
-                    class="h-8 w-auto">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike"
-                    class="h-6 w-auto">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Under_armour_logo.svg" alt="Under Armour"
-                    class="h-8 w-auto">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Puma_Logo.svg" alt="Puma"
-                    class="h-8 w-auto">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/New_Balance_logo.svg" alt="New Balance"
-                    class="h-6 w-auto">
+                class="container mx-auto px-4 flex flex-wrap justify-between items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500 gap-8 justify-center md:justify-between">
+                <img src="https://cdn.worldvectorlogo.com/logos/adidas-9.svg" alt="Adidas"
+                    class="h-10 w-auto object-contain">
+                <img src="https://cdn.worldvectorlogo.com/logos/nike-11.svg" alt="Nike"
+                    class="h-8 w-auto object-contain">
+                <img src="https://cdn.worldvectorlogo.com/logos/under-armour-1.svg" alt="Under Armour"
+                    class="h-10 w-auto object-contain">
+                <img src="https://cdn.worldvectorlogo.com/logos/puma-logo.svg" alt="Puma"
+                    class="h-10 w-auto object-contain">
+                <img src="https://cdn.worldvectorlogo.com/logos/new-balance-2.svg" alt="New Balance"
+                    class="h-10 w-auto object-contain">
                 <!-- Additional Brands -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung"
-                    class="h-5 w-auto">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"
-                    class="h-7 w-auto">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" alt="Sony"
-                    class="h-4 w-auto">
+                <img src="https://cdn.worldvectorlogo.com/logos/samsung.svg" alt="Samsung"
+                    class="h-6 w-auto object-contain">
+                <img src="https://cdn.worldvectorlogo.com/logos/apple-14.svg" alt="Apple"
+                    class="h-8 w-auto object-contain">
+                <img src="https://cdn.worldvectorlogo.com/logos/sony-logo.svg" alt="Sony"
+                    class="h-6 w-auto object-contain">
             </div>
         </div>
 
@@ -278,6 +282,95 @@
                 </div>
             </div>
         </div>
+        </section>
+
+        <!-- FLIGHT COMPARE SECTION (NEW) -->
+        <section id="flights-section" class="container mx-auto px-4 py-16 fade-in hidden">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <span
+                        class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">New</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-4 text-gray-900">Compare Flight Prices</h2>
+                    <p class="text-gray-500">Find the best deals across multiple airlines and booking platforms
+                        instantly.</p>
+                </div>
+
+                <!-- Flight Search Widget -->
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+
+                    <form onsubmit="handleFlightSearch(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Origin -->
+                            <div class="relative">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">From</label>
+                                <div class="flex items-center">
+                                    <span class="absolute left-4 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" id="flight-origin" value="Lagos (LOS)" readonly
+                                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:border-blue-500 transition outline-none font-medium text-gray-700 cursor-not-allowed">
+                                </div>
+                            </div>
+
+                            <!-- Destination -->
+                            <div class="relative">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">To</label>
+                                <div class="flex items-center">
+                                    <span class="absolute left-4 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" id="flight-dest" placeholder="Enter destination (e.g., London)"
+                                        required
+                                        class="w-full pl-12 pr-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:border-blue-500 transition outline-none font-medium text-gray-900">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Departure</label>
+                                <input type="date" required
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Return</label>
+                                <input type="date" required
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Passengers</label>
+                                <select
+                                    class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none">
+                                    <option>1 Adult</option>
+                                    <option>2 Adults</option>
+                                    <option>2 Adults, 1 Child</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="search-flights-btn"
+                            class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-600/30 flex justify-center items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            Search Flights
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Search Results Container -->
+                <div id="flight-results" class="mt-8 space-y-4 hidden">
+                    <!-- Results injected via JS -->
+                </div>
+            </div>
         </section>
 
         <!-- DEALS SECTION (Product List) -->

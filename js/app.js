@@ -1,148 +1,100 @@
-// --- 1. MOCK DATA ---
-const products = [
-    {
-        id: 1,
+{
+    id: 1,
         name: "Sony WH-1000XM5 Headphones",
-        category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=400",
-        description: "Industry-leading noise canceling with 30-hour battery life.",
-        retailers: [
-            { name: "Amazon", price: "$348", url: "/go/amazon/sony-xm5", color: "bg-gray-800 text-white" },
-            { name: "Jumia", price: "₦450,000", url: "/go/jumia/sony-xm5", color: "bg-orange-500 text-white" }
-        ]
-    },
-    {
-        id: 2,
+            category: "Gadgets",
+                image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=600",
+                    description: "Industry-leading noise canceling with 30-hour battery life.",
+                        retailers: [
+                            { name: "Amazon", price: "$348", url: "/go/amazon/sony-xm5", color: "bg-gray-800 text-white" },
+                            { name: "Jumia", price: "₦450,000", url: "/go/jumia/sony-xm5", color: "bg-orange-500 text-white" }
+                        ]
+},
+{
+    id: 2,
         name: "Flights to London (Round Trip)",
-        category: "Travel",
-        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=400",
-        description: "Best rates for summer 2025. Direct flights from Lagos.",
-        retailers: [
-            { name: "Wakanow", price: "₦1,200,000", url: "/go/wakanow/london", color: "bg-blue-600 text-white" },
-            { name: "TravelStart", price: "₦1,150,000", url: "/go/travelstart/london", color: "bg-purple-600 text-white" }
-        ]
-    },
-    {
-        id: 3,
+            category: "Travel",
+                image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=600",
+                    description: "Best rates for summer 2025. Direct flights from Lagos.",
+                        retailers: [
+                            { name: "Wakanow", price: "₦1,200,000", url: "/go/wakanow/london", color: "bg-blue-600 text-white" },
+                            { name: "TravelStart", price: "₦1,150,000", url: "/go/travelstart/london", color: "bg-purple-600 text-white" }
+                        ]
+},
+{
+    id: 3,
         name: "iPhone 15 Pro Max",
-        category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=400",
-        description: "Titanium design, A17 Pro chip, 48MP Main Camera.",
-        retailers: [
-            { name: "Amazon", price: "$1,199", url: "/go/amazon/iphone15", color: "bg-gray-800 text-white" },
-            { name: "Slot", price: "₦1,800,000", url: "/go/slot/iphone15", color: "bg-red-600 text-white" }
-        ]
-    },
-    {
-        id: 4,
+            category: "Gadgets",
+                image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&q=80&w=600",
+                    description: "Titanium design, A17 Pro chip, 48MP Main Camera.",
+                        retailers: [
+                            { name: "Amazon", price: "$1,199", url: "/go/amazon/iphone15", color: "bg-gray-800 text-white" },
+                            { name: "Slot", price: "₦1,800,000", url: "/go/slot/iphone15", color: "bg-red-600 text-white" }
+                        ]
+},
+{
+    id: 4,
         name: "Domino's Pizza Voucher",
-        category: "Food",
-        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=400",
-        description: "Get 50% off large pizzas with this exclusive code.",
-        retailers: [
-            { name: "Domino's", price: "₦4,500", url: "/go/dominos/deal", color: "bg-blue-800 text-white" }
-        ]
-    },
-    // New Mock Data
-    {
-        id: 6,
+            category: "Food",
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600",
+                    description: "Get 50% off large pizzas with this exclusive code.",
+                        retailers: [
+                            { name: "Domino's", price: "₦4,500", url: "/go/dominos/deal", color: "bg-blue-800 text-white" }
+                        ]
+},
+{
+    id: 6,
         name: "MacBook Air M2",
-        category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca4?auto=format&fit=crop&q=80&w=400",
-        description: "Supercharged by M2. 18 hours battery life. Stunning Liquid Retina display.",
-        retailers: [
-            { name: "Amazon", price: "$999", url: "/go/amazon/macbook", color: "bg-gray-800 text-white" },
-            { name: "Jumia", price: "₦1,300,000", url: "/go/jumia/macbook", color: "bg-orange-500 text-white" }
-        ]
-    },
-    {
-        id: 7,
+            category: "Gadgets",
+                image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca4?auto=format&fit=crop&q=80&w=600",
+                    description: "Supercharged by M2. 18 hours battery life. Stunning Liquid Retina display.",
+                        retailers: [
+                            { name: "Amazon", price: "$999", url: "/go/amazon/macbook", color: "bg-gray-800 text-white" },
+                            { name: "Jumia", price: "₦1,300,000", url: "/go/jumia/macbook", color: "bg-orange-500 text-white" }
+                        ]
+},
+{
+    id: 7,
         name: "Nike Air Jordan 1",
-        category: "Fashion",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=400",
-        description: "Classic high-top sneakers. Iconic style for everyday wear.",
-        retailers: [
-            { name: "Nike", price: "$180", url: "/go/nike/jordan", color: "bg-black text-white" },
-            { name: "Jumia", price: "₦45,000", url: "/go/jumia/jordan", color: "bg-orange-500 text-white" }
-        ]
-    },
-    {
-        id: 8,
+            category: "Fashion",
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=600",
+                    description: "Classic high-top sneakers. Iconic style for everyday wear.",
+                        retailers: [
+                            { name: "Nike", price: "$180", url: "/go/nike/jordan", color: "bg-black text-white" },
+                            { name: "Jumia", price: "₦45,000", url: "/go/jumia/jordan", color: "bg-orange-500 text-white" }
+                        ]
+},
+{
+    id: 8,
         name: "Dubai Vacation Package",
-        category: "Travel",
-        image: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=400",
-        description: "5 Nights at Atlantis The Palm + Flight + Visa.",
-        retailers: [
-            { name: "Wakanow", price: "₦2,500,000", url: "/go/wakanow/dubai", color: "bg-blue-600 text-white" }
-        ]
-    },
-    {
-        id: 9,
+            category: "Travel",
+                image: "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&q=80&w=600",
+                    description: "5 Nights at Atlantis The Palm + Flight + Visa.",
+                        retailers: [
+                            { name: "Wakanow", price: "₦2,500,000", url: "/go/wakanow/dubai", color: "bg-blue-600 text-white" }
+                        ]
+},
+{
+    id: 9,
         name: "Canon EOS R50",
-        category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=400",
-        description: "Compact mirrorless camera for content creators.",
-        retailers: [
-            { name: "Amazon", price: "$679", url: "/go/amazon/canon", color: "bg-gray-800 text-white" },
-            { name: "Konga", price: "₦850,000", url: "/go/konga/canon", color: "bg-pink-600 text-white" }
-        ]
-    },
-    {
-        id: 4,
-        name: "Flights to London (Round Trip)",
-        category: "Travel",
-        image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=600",
-        description: "Best rates for summer 2025. Direct flights from Lagos.",
-        retailers: [
-            { name: "TravelStart", price: "N1,150,000", url: "https://www.travelstart.com.ng", color: "bg-purple-600 text-white" },
-            { name: "Wakanow", price: "N1,200,000", url: "https://www.wakanow.com", color: "bg-blue-600 text-white" }
-        ]
-    },
-    {
-        id: 5,
-        name: "Dubai Holiday Package (5 Nights)",
-        category: "Travel",
-        image: "https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&q=80&w=600",
-        description: "All-inclusive stay at Atlantis The Palm + Visa.",
-        retailers: [
-            { name: "Wakanow", price: "N2,500,000", url: "#", color: "bg-blue-600 text-white" },
-            { name: "TravelStart", price: "N2,650,000", url: "#", color: "bg-purple-600 text-white" }
-        ]
-    },
-    {
-        id: 6,
-        name: "Sony WH-1000XM5",
-        category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=600",
-        description: "Industry-leading noise canceling with 30-hour battery life.",
-        retailers: [
-            { name: "Amazon", price: "$348", url: "#", color: "bg-gray-900 text-white" },
-            { name: "Jumia", price: "N450,000", url: "#", color: "bg-orange-500 text-white" },
-            { name: "Slot", price: "N480,000", url: "#", color: "bg-red-600 text-white" }
-        ]
-    },
-    {
-        id: 7,
-        name: "MacBook Pro M3",
-        category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1531297461136-82lw8e826359?auto=format&fit=crop&q=80&w=600",
-        description: "Must-have for power users.",
-        retailers: [
-            { name: "Amazon", price: "$1,599", url: "#", color: "bg-gray-900 text-white" },
-            { name: "Slot", price: "N2,800,000", url: "#", color: "bg-red-600 text-white" }
-        ]
-    },
-    {
-        id: 8,
-        name: "Samsung S24 Ultra",
-        category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&q=80&w=600",
-        description: "Zoom into the future.",
-        retailers: [
-            { name: "Jumia", price: "N1,900,000", url: "#", color: "bg-orange-500 text-white" },
-            { name: "Slot", price: "N2,100,000", url: "#", color: "bg-red-600 text-white" }
-        ]
-    }
+            category: "Gadgets",
+                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=600",
+                    description: "Compact mirrorless camera for content creators.",
+                        retailers: [
+                            { name: "Amazon", price: "$679", url: "/go/amazon/canon", color: "bg-gray-800 text-white" },
+                            { name: "Konga", price: "₦850,000", url: "/go/konga/canon", color: "bg-pink-600 text-white" }
+                        ]
+},
+{
+    id: 10,
+        name: "Sony Play Station 5",
+            category: "Gadgets",
+                image: "https://images.unsplash.com/photo-1606144042614-b441db3ce5a7?auto=format&fit=crop&q=80&w=600",
+                    description: "Experience lightning-fast loading and deeper immersion.",
+                        retailers: [
+                            { name: "Amazon", price: "$499", url: "/go/amazon/ps5", color: "bg-gray-900 text-white" },
+                            { name: "Jumia", price: "₦650,000", url: "/go/jumia/ps5", color: "bg-orange-500 text-white" }
+                        ]
+}
 ];
 
 // --- 2. RENDER LOGIC ---
@@ -205,9 +157,8 @@ function handleSearch(e) {
 }
 
 function createProductCard(product) {
-    const card = document.createElement('div');
-    // Minimal Card Style: White bg, subtle shadow, rounded corners
-    card.className = "group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full";
+    // Minimal Card Style: White bg, subtle shadow, rounded corners + Hover Effect
+    card.className = "group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full transform hover:-translate-y-2";
 
     // 1. Sort Retailers by Price
     const sortedRetailers = [...product.retailers].sort((a, b) => {
@@ -236,8 +187,9 @@ function createProductCard(product) {
     });
 
     card.innerHTML = `
-        <div class="relative overflow-hidden h-64 bg-gray-50">
-             <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+        <div class="relative overflow-hidden h-64 bg-gray-50 group">
+             <img src="${product.image}" loading="lazy" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
              <!-- Category Pill -->
              <span class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
                 ${product.category}
@@ -274,7 +226,7 @@ function trackClick(e) {
 // --- 3. NAVIGATION LOGIC ---
 function showSection(sectionName) {
     // Hide all
-    ['home-section', 'deals-section', 'auth-section', 'dashboard-section', 'contact-section'].forEach(id => {
+    ['home-section', 'deals-section', 'flights-section', 'auth-section', 'dashboard-section', 'contact-section'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.add('hidden');
     });
@@ -289,6 +241,7 @@ function showSection(sectionName) {
         renderProducts();
     }
     if (sectionName === 'contact') document.getElementById('contact-section')?.classList.remove('hidden');
+    if (sectionName === 'flights') document.getElementById('flights-section')?.classList.remove('hidden');
 
     // Auth Handling
     if (sectionName === 'auth') {
