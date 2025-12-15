@@ -46,7 +46,7 @@ const products = [
         id: 6,
         name: "MacBook Air M2",
         category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1661961110218-35688a456c3e?auto=format&fit=crop&q=80&w=600",
+        image: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&q=80&w=600",
         description: "Supercharged by M2. 18 hours battery life. Stunning Liquid Retina display.",
         retailers: [
             { name: "Amazon", price: "$999", url: "/go/amazon/macbook", color: "bg-gray-800 text-white" },
@@ -94,6 +94,18 @@ const products = [
         retailers: [
             { name: "Amazon", price: "$499", url: "/go/amazon/ps5", color: "bg-gray-900 text-white" },
             { name: "Jumia", price: "₦650,000", url: "/go/jumia/ps5", color: "bg-orange-500 text-white" }
+        ]
+    },
+    {
+        id: 11,
+        name: "International Shipping (5kg to UK)",
+        category: "Logistics",
+        image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&q=80&w=600",
+        description: "Compare shipping rates for standard diagram parcels.",
+        retailers: [
+            { name: "DHL", price: "₦45,000", url: "/go/dhl/ship", color: "bg-yellow-400 text-red-900" },
+            { name: "FedEx", price: "₦42,500", url: "/go/fedex/ship", color: "bg-purple-900 text-white" },
+            { name: "GIG Logistics", price: "₦35,000", url: "/go/gig/ship", color: "bg-black text-white" }
         ]
     }
 ];
@@ -538,8 +550,8 @@ window.addEventListener('DOMContentLoaded', () => {
     // Handle Initial Hash
     const hash = window.location.hash.slice(1);
     if (hash) {
-        if (['deals', 'contact', 'gadgets', 'food', 'delivery', 'travel'].includes(hash)) {
-            if (['gadgets', 'food', 'delivery', 'travel'].includes(hash)) {
+        if (['deals', 'contact', 'gadgets', 'food', 'delivery', 'logistics', 'travel'].includes(hash)) {
+            if (['gadgets', 'food', 'delivery', 'logistics', 'travel'].includes(hash)) {
                 // It's a category
                 const category = hash.charAt(0).toUpperCase() + hash.slice(1);
                 filterCategory(category);
