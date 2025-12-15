@@ -395,15 +395,17 @@ function handlePartnerLogin(e) {
 }
 
 function updateNavForUser(name) {
-    // Simple UI update to show logged in state
-    const desktopAuthContainer = document.querySelector('.hidden.md\\:flex.items-center.gap-4');
-    if (desktopAuthContainer) {
-        desktopAuthContainer.innerHTML = `
+    const container = document.getElementById('desktop-auth-container');
+    if (container) {
+        container.innerHTML = `
             <div class="flex items-center gap-3">
                 <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold border border-blue-200">
                     ${name.charAt(0)}
                 </div>
-                <span class="font-bold text-gray-700">${name}</span>
+                <div class="flex flex-col">
+                    <span class="font-bold text-gray-700 text-sm leading-tight">${name}</span>
+                    <button onclick="handleLogout()" class="text-xs text-red-500 hover:underline text-left">Sign Out</button>
+                </div>
             </div>
         `;
     }
@@ -517,6 +519,7 @@ window.switchAuthTab = switchAuthTab;
 window.switchTravelTab = switchTravelTab;
 window.handleFlightSearch = handleFlightSearch;
 
+
 // --- 5. INITIALIZE ---
 window.addEventListener('DOMContentLoaded', () => {
     // Tailwind Config Injection
@@ -565,19 +568,3 @@ function handleLogout() {
     showSection('home');
 }
 
-function updateNavForUser(name) {
-    const container = document.getElementById('desktop-auth-container');
-    if (container) {
-        container.innerHTML = `
-            <div class="flex items-center gap-3">
-                <div class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold border border-blue-200">
-                    ${name.charAt(0)}
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-bold text-gray-700 text-sm leading-tight">${name}</span>
-                    <button onclick="handleLogout()" class="text-xs text-red-500 hover:underline text-left">Sign Out</button>
-                </div>
-            </div>
-        `;
-    }
-}
