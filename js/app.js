@@ -159,6 +159,7 @@ function handleSearch(e) {
 
 function createProductCard(product) {
     // Minimal Card Style: White bg, subtle shadow, rounded corners + Hover Effect
+    const card = document.createElement('div');
     card.className = "group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full transform hover:-translate-y-2";
 
     // 1. Sort Retailers by Price
