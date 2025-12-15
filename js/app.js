@@ -89,7 +89,7 @@ const products = [
         id: 10,
         name: "Sony Play Station 5",
         category: "Gadgets",
-        image: "https://images.unsplash.com/photo-1605901309584-818e25960b8f?auto=format&fit=crop&q=80&w=600",
+        image: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?auto=format&fit=crop&q=80&w=600",
         description: "Experience lightning-fast loading and deeper immersion.",
         retailers: [
             { name: "Amazon", price: "$499", url: "/go/amazon/ps5", color: "bg-gray-900 text-white" },
